@@ -1,5 +1,5 @@
 # Path: .gitignore
-.terraform/*
+**/.terraform/*
 *.tfstate
 *.tfstate.*
 *.tfvars
