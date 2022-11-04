@@ -1,0 +1,9 @@
+# Path: .gitignore
+.terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfplan
+*.tfplan.*
+*.tfstate.backup
+*.locl.hcl
