@@ -37,13 +37,14 @@ resource "netbox_virtual_machine" "vm" {
   comments   = var.vm_comment
   vcpus      = var.vm_cpu
   memory_mb  = var.vm_memory
+  tags = [ "customer:CGI" ] # the tag is the name not the slug
 }
 
 # Create interface for VM
 resource "netbox_interface" "vm_eth0" {
   name               = "eth0"
   enabled            = true
-  mac_address        = "00:00:00:00:00:00"
+  mac_address        = var.vm_mac_address
   virtual_machine_id = netbox_virtual_machine.vm.id
 }
 
