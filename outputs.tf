@@ -23,3 +23,11 @@ output "netbox_vm_ip" {
 output "prefix_name" {
   value = local.prefix_name
 }
+
+output "prefix_gateway" {
+  value = local.prefix_gateway
+}
+
+output "prefix_gateway_ip" {
+  value = split("/", local.prefix_gateway)[0]
+}

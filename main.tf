@@ -23,6 +23,21 @@ locals {
   prefix_name = local.http_response.results[0].display
 }
 
+# Get prefix default gateway
+data "http" "netbox_get_prefix_gateway" {
+  url = "${var.netbox_url}/api/ipam/ip-addresses/?role=anycast&description=Default%20Gateway&tag=${var.network_tag}"
+  insecure = true
+  # Request headers
+  request_headers = {
+    Accept = "application/json"
+    Authorization = "Token ${var.netbox_token}"
+  }
+}
+# Parse the JSON response from Netbox to get the prefix default gateway
+locals {
+  http_response_gateway = jsondecode(data.http.netbox_get_prefix_gateway.body)
+  prefix_gateway = local.http_response_gateway.results[0].address
+}
 
 
 # Find vCenter cluster id 
